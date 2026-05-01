@@ -1,0 +1,60 @@
+# ─── L-QLSTM Fleet Emissions Forecaster ──────────────────────────────────────
+# Python 3.11 required (tested on 3.11.9)
+#
+# Quick-start (run from the repo root):
+#
+#   python -m venv qlstmvenv
+#
+#   Windows:  qlstmvenv\Scripts\activate
+#   Linux/Mac: source qlstmvenv/bin/activate
+#
+#   pip install --upgrade pip
+#   pip install -r requirements.txt
+#
+#   # Register the venv as a Jupyter kernel, then open the notebook:
+#   python -m ipykernel install --user --name qlstmvenv --display-name "Python (QLSTM)"
+#   jupyter lab L_QLSTM_Fleet_Emissions.ipynb
+#
+# ─── Version notes ────────────────────────────────────────────────────────────
+# PennyLane 0.38.0 is the minimum version compatible with autoray>=0.6.11.
+# All three PennyLane packages (core / qiskit / lightning) must share the same
+# version number — mixing them causes ImportError on startup.
+# sympy is pinned to <1.13 because pennylane-qiskit 0.38 requires it.
+# numpy is pinned to <2.0 because PennyLane 0.38 does not support numpy 2.x.
+# ──────────────────────────────────────────────────────────────────────────────
+
+# ─── Core scientific stack ────────────────────────────────────────────────────
+numpy==1.26.4               # <2.0 required by PennyLane 0.38
+pandas==2.2.2
+matplotlib==3.9.0
+scikit-learn==1.5.0
+scipy==1.17.1
+
+# ─── Deep learning ───────────────────────────────────────────────────────────
+torch==2.3.0
+torchvision==0.18.0         # keeps torch ecosystem versions aligned
+
+# ─── Quantum ML — PennyLane stack (all three must be the same version) ───────
+pennylane==0.38.0
+pennylane-qiskit==0.38.0    # PennyLane ↔ Qiskit bridge; needs qiskit>=1.0
+pennylane-lightning==0.38.0 # fast CPU state-vector simulator backend
+autoray==0.6.12             # PennyLane 0.38 requires autoray>=0.6.11
+autograd==1.8.0             # used internally by pennylane.numpy
+
+# ─── Qiskit stack ────────────────────────────────────────────────────────────
+qiskit==1.1.0
+qiskit-aer==0.14.2          # Aer statevector / noise simulators (local)
+qiskit-ibm-runtime==0.23.0  # needed when connecting to real IBM hardware
+sympy==1.12.1               # <1.13 required by pennylane-qiskit 0.38
+
+# ─── Jupyter ─────────────────────────────────────────────────────────────────
+jupyter==1.0.0
+jupyterlab==4.2.7
+notebook==7.2.0
+ipykernel==6.29.4           # registers the venv as a Jupyter kernel
+ipywidgets==8.1.3           # widget support inside notebooks
+
+# ─── Utilities ───────────────────────────────────────────────────────────────
+tqdm==4.66.4                # progress bars in training loops
+
+winget install miktex
